@@ -31,4 +31,6 @@
   --color-card-symbol: #aaa;
   --color-card-hover: #ebf5f3;
   --color-card-hover-symbol: #b6e9de;
+  --color-gradient-start: #dcdcdc1a;
+  --color-gradient-end: #dfbe9c1a;
 }
