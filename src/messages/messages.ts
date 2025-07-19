@@ -1,5 +1,9 @@
-export const t = {
-  homePage: {
-    title: 'Home Page',
+export const messages = {
+  game: {
+    logo: 'memoo mission logo',
+    matches: 'matches',
+    mistakes: 'mistakes',
+    settings: 'Settings',
+    reset: 'Reset',
   },
 };
