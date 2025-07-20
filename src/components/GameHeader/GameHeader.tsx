@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import { useTimer } from '../../hooks/useTimer';
 import { SettingsModal } from './SettingsModal';
-import { resetGame, setStoreTimer } from '../../store/gameSlice';
+import { resetGame, setGameResult, setStoreTimer } from '../../store/gameSlice';
 
 export const GameHeader: FC = () => {
   const {
@@ -33,7 +33,7 @@ export const GameHeader: FC = () => {
 
   const handleResetClick = useCallback(() => {
     dispatch(resetGame());
-    // todo: reshuffle
+    dispatch(setGameResult('reset'));
   }, []);
 
   useEffect(() => {
