@@ -28,7 +28,7 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
       'react-x': reactX,
       'react-dom': reactDom,
-      'eslintPluginPrettier': eslintPluginPrettier,
+      eslintPluginPrettier: eslintPluginPrettier,
       'jsx-a11y': jsxA11y,
     },
     rules: {
