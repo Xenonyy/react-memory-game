@@ -29,7 +29,7 @@ export const ResultsModal: FC = () => {
   }, []);
 
   const result: ResultTypes =
-    mistakes >= difficulty ? 'defeat' : matches >= pairAmount ? 'victory' : timer <= 0 ? 'timeup' : '';
+    mistakes === difficulty ? 'defeat' : matches === pairAmount ? 'victory' : timer <= 0 ? 'timeup' : '';
 
   useEffect(() => {
     result !== '' && setIsModalOpen(true);
