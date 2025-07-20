@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { useCallback, useState, type FC } from 'react';
 import { Box } from '../common/Box';
 import { messages } from '../../messages/messages';
 import logo from '../../assets/logo.svg';
@@ -6,12 +6,19 @@ import settings from '../../assets/game/settings.svg';
 import reset from '../../assets/game/reset.svg';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
+import { useTimer } from '../../hooks/useTimer';
+import { Modal } from '../common/Modal';
 
 export const GameHeader: FC = () => {
-  const [timer, setTimer] = useState(90);
-
+  const [timer, setTimer] = useTimer({ countdown: 60 });
   const matches = useSelector((state: RootState) => state.game.matches);
   const mistakes = useSelector((state: RootState) => state.game.mistakes);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSettingsClick = useCallback(() => {
+    setIsModalOpen((prev) => !prev);
+  }, []);
 
   return (
     <Box className="w-full h-full justify-between pb-8">
@@ -28,7 +35,13 @@ export const GameHeader: FC = () => {
         </Box>
       </Box>
       <Box className="flex-row">
-        <img src={settings} alt={messages.game.settings} className="w-6 h-6" />
+        <img
+          src={settings}
+          alt={messages.game.settings}
+          className="w-6 h-6 hover:mix-blend-difference cursor-pointer transition-all duration-300"
+          onClick={handleSettingsClick}
+        />
+        {isModalOpen && <Modal onClick={handleSettingsClick} />}
         <p className="border-r-2 border-border w-0 h-10 mx-4" />
         <img src={reset} alt={messages.game.reset} className="w-6 h-6" />
       </Box>
