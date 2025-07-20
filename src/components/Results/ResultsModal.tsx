@@ -26,7 +26,7 @@ export const ResultsModal: FC = () => {
   }, []);
 
   // optional TODO: implement difficulty settings then replace hardcoded values
-  const result: ModalTypes | '' = mistakes >= 12 ? 'defeat' : matches >= 10 ? 'victory' : timer <= 0 ? 'timeup' : '';
+  const result: ModalTypes | '' = mistakes >= 10 ? 'defeat' : matches >= 12 ? 'victory' : timer <= 0 ? 'timeup' : '';
 
   useEffect(() => {
     result !== '' && setIsModalOpen(true);
