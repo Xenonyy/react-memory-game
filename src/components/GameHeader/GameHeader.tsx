@@ -7,7 +7,7 @@ import reset from '../../assets/game/reset.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import { useTimer } from '../../hooks/useTimer';
-import { Modal } from '../common/Modal';
+import { SettingsModal } from './SettingsModal';
 import { resetGame, setStoreTimer } from '../../store/gameSlice';
 
 export const GameHeader: FC = () => {
@@ -57,7 +57,7 @@ export const GameHeader: FC = () => {
           className="w-6 h-6 filter brightness-100 hover:brightness-50  cursor-pointer transition-all duration-300"
           onClick={handleSettingsClick}
         />
-        {isModalOpen && <Modal onClick={handleSettingsClick} />}
+        {isModalOpen && <SettingsModal onClick={handleSettingsClick} />}
         <p className="border-r-2 border-border w-0 h-10 mx-4" />
         <img
           src={reset}
