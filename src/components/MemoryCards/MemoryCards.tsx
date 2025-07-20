@@ -98,8 +98,8 @@ export const MemoryCards: FC = () => {
   }, [flippedIds, matchedIds, isDisabled, pairAmount]);
 
   return (
-    <Box className="@container w-full h-full bg-primary-bg rounded-lg md:rounded-3xl px-2 py-6 md:px-16 md:py-20 justify-center select-none">
-      <Box className="grid grid-cols-2 @md:grid-cols-3 @2xl:grid-cols-4 @4xl:grid-cols-6 @5xl:grid-cols-8 gap-5 2xl:grid-cols-12">
+    <Box className="@container w-full h-full bg-primary-bg rounded-lg md:rounded-3xl px-2 py-6 lg:px-16 lg:py-20 justify-center select-none">
+      <Box className="grid grid-cols-2 @xs:grid-cols-3 @xl:grid-cols-4 @3xl:grid-cols-6 @4xl:grid-cols-8 gap-5">
         {cards.map(({ id, symbol }, index) => (
           <motion.div
             key={id}
