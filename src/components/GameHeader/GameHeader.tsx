@@ -44,34 +44,36 @@ export const GameHeader: FC = () => {
   }, [timer, dispatch]);
 
   return (
-    <Box className="w-full h-full justify-between pb-8">
+    <Box className="w-full h-full justify-between pb-8 md:flex-row flex-col">
       <img src={logo} alt={messages.game.logo} className="w-52 h-28" />
-      <Box className="flex-row">
-        <p className="text-secondary-text text-6xl border-r-2 border-border pr-4">{timer}</p>
-        <Box className="flex-col">
-          <p className="border-b-2 border-border pb-2 pl-4">
-            {matches} {messages.game.matches}
-          </p>
-          <p className="pt-2 pl-4">
-            {mistakes} {messages.game.mistakes}
-          </p>
+      <Box className="flex-row justify-around md:justify-between w-full md:w-[55%]">
+        <Box className="flex-row pt-4 md:pt-0">
+          <p className="text-secondary-text text-6xl border-r-2 border-border pr-4">{timer}</p>
+          <Box className="flex-col">
+            <p className="border-b-2 border-border pb-2 pl-4">
+              {matches} {messages.game.matches}
+            </p>
+            <p className="pt-2 pl-4">
+              {mistakes} {messages.game.mistakes}
+            </p>
+          </Box>
         </Box>
-      </Box>
-      <Box className="flex-row">
-        <img
-          src={settings}
-          alt={messages.game.settings}
-          className="w-6 h-6 filter brightness-100 hover:brightness-50  cursor-pointer transition-all duration-300"
-          onClick={handleSettingsClick}
-        />
-        {isModalOpen && <SettingsModal onClick={handleSettingsClick} />}
-        <p className="border-r-2 border-border w-0 h-10 mx-4" />
-        <img
-          src={reset}
-          alt={messages.game.reset}
-          className="w-6 h-6 filter brightness-100 hover:brightness-50  cursor-pointer transition-all duration-300"
-          onClick={handleResetClick}
-        />
+        <Box className="flex-row pt-4 md:pt-0">
+          <img
+            src={settings}
+            alt={messages.game.settings}
+            className="w-6 h-6 filter brightness-100 hover:brightness-50  cursor-pointer transition-all duration-300"
+            onClick={handleSettingsClick}
+          />
+          {isModalOpen && <SettingsModal onClick={handleSettingsClick} />}
+          <p className="border-r-2 border-border w-0 h-10 mx-4" />
+          <img
+            src={reset}
+            alt={messages.game.reset}
+            className="w-6 h-6 filter brightness-100 hover:brightness-50  cursor-pointer transition-all duration-300"
+            onClick={handleResetClick}
+          />
+        </Box>
       </Box>
     </Box>
   );

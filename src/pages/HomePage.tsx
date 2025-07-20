@@ -12,7 +12,7 @@ export const HomePage: FC = () => {
 
   return (
     <DefaultLayout>
-      <Container className="bg-white p-20 font-gilroy font-extrabold text-primary-text">
+      <Container className="bg-white p-4 md:p-20 font-gilroy font-extrabold text-primary-text">
         <GameHeader />
         <MemoryCards key={gameResetVersion} />
         <ResultsModal />
