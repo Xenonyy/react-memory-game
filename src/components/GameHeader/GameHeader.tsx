@@ -36,6 +36,10 @@ export const GameHeader: FC = () => {
     setTimer(storeTimer);
   }, [storeTimer, setTimer, timerVersion]);
 
+  useEffect(() => {
+    dispatch(setStoreTimer(timer > 0 ? timer : 0));
+  }, [timer, dispatch]);
+
   return (
     <Box className="w-full h-full justify-between pb-8">
       <img src={logo} alt={messages.game.logo} className="w-52 h-28" />
