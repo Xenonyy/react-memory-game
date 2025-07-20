@@ -1,8 +1,11 @@
 import { useState, useEffect, useMemo, type FC } from 'react';
 import { Box } from '../common/Box';
 import { Card } from './Card';
+import { useDispatch } from 'react-redux';
+import { incrementMatches, incrementMistakes } from '../../store/gameSlice';
 
 export const MemoryCards: FC = () => {
+  const dispatch = useDispatch();
   const symbols = ['🦊', '🐶', '🐱', '🐹', '🐰', '🐵', '🐻', '🐼', '🐨', '🐯', '🦁', '🐷'];
 
   const cards = useMemo(() => {
@@ -38,6 +41,9 @@ export const MemoryCards: FC = () => {
       const isMatch = firstCard.symbol === secondCard.symbol;
       if (isMatch) {
         setMatchedIds((prev) => [...prev, firstId, secondId]);
+        dispatch(incrementMatches());
+      } else {
+        dispatch(incrementMistakes());
       }
 
       setTimeout(() => {

@@ -4,11 +4,14 @@ import { messages } from '../../messages/messages';
 import logo from '../../assets/logo.svg';
 import settings from '../../assets/game/settings.svg';
 import reset from '../../assets/game/reset.svg';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../store/store';
 
 export const GameHeader: FC = () => {
-  const [matches, setMatches] = useState(0);
-  const [mistakes, setMistakes] = useState(0);
   const [timer, setTimer] = useState(90);
+
+  const matches = useSelector((state: RootState) => state.game.matches);
+  const mistakes = useSelector((state: RootState) => state.game.mistakes);
 
   return (
     <Box className="w-full h-full justify-between pb-8">
