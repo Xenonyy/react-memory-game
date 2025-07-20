@@ -9,6 +9,7 @@ interface GameState {
   username: string;
   gameResult: string;
   gameResetVersion: number;
+  pairAmount: number;
 }
 
 const initialState: GameState = {
@@ -20,6 +21,7 @@ const initialState: GameState = {
   username: 'Player',
   gameResult: 'initial',
   gameResetVersion: 0,
+  pairAmount: 12,
 };
 
 export const gameSlice = createSlice({
@@ -66,6 +68,12 @@ export const gameSlice = createSlice({
     setGameResult: (state, action: PayloadAction<string>) => {
       state.gameResult = action.payload;
     },
+    pairAmount: (state) => {
+      state.pairAmount = 12;
+    },
+    setPairAmount: (state, action: PayloadAction<number>) => {
+      state.pairAmount = action.payload;
+    },
   },
 });
 
@@ -80,5 +88,7 @@ export const {
   username,
   setUsername,
   setGameResult,
+  pairAmount,
+  setPairAmount,
 } = gameSlice.actions;
 export default gameSlice.reducer;

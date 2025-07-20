@@ -1,7 +1,7 @@
 import { useCallback, useRef, type FC } from 'react';
 import { messages } from '../../messages/messages';
 import { useDispatch, useSelector } from 'react-redux';
-import { setStoreTimer, setTimersetting, setUsername } from '../../store/gameSlice';
+import { setPairAmount, setStoreTimer, setTimersetting, setUsername } from '../../store/gameSlice';
 import type { RootState } from '../../store/store';
 import { Box } from '../common/Box';
 import { Modal } from '../common/Modal';
@@ -12,10 +12,11 @@ interface SettingsModalProps {
 
 export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
   const dispatch = useDispatch();
-  const { timer, username, timerSetting } = useSelector((state: RootState) => ({
+  const { timer, username, timerSetting, pairAmount } = useSelector((state: RootState) => ({
     timer: state.game.timer,
     username: state.game.username,
     timerSetting: state.game.timerSetting,
+    pairAmount: state.game.pairAmount,
   }));
 
   const countdownRef = useRef<HTMLInputElement>(null);
@@ -24,10 +25,12 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
 
   const handleClick = useCallback(() => {
     const countdownValue = Number(countdownRef.current?.value) || timer;
+    const pairsValue = Number(pairsRef.current?.value) || pairAmount;
     const usernameValue = String(usernameRef.current?.value) || 'Player';
     dispatch(setStoreTimer(countdownValue));
     dispatch(setTimersetting(countdownValue));
     dispatch(setUsername(usernameValue));
+    dispatch(setPairAmount(pairsValue));
     onClick?.();
   }, [dispatch, onClick]);
 
@@ -40,7 +43,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
             role="textbox"
             ref={pairsRef}
             tabIndex={0}
-            defaultValue={12}
+            defaultValue={pairAmount}
             className="text-center py-2 border-2 border-border max-w-13 rounded-lg"
           />
         </Box>
