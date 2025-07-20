@@ -5,6 +5,7 @@ export const messages = {
     mistakes: 'mistakes',
     settings: 'Settings',
     reset: 'Reset Game',
+    retry: 'Retry',
   },
   modal: {
     settings: {
@@ -13,6 +14,18 @@ export const messages = {
       countdown: 'Countdown time (sec.)',
       username: 'Enter username',
       save: 'Save Settings',
+    },
+    victory: {
+      title: 'Victory',
+      description: 'Congratulations, you won! 🥳🎉',
+    },
+    defeat: {
+      title: 'Defeat',
+      description: 'You have made too many mistakes! 😵',
+    },
+    timeup: {
+      title: 'Time up',
+      description: 'You have run out of time! 😴',
     },
   },
 };
