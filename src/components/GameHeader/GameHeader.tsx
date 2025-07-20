@@ -1,4 +1,4 @@
-import { useCallback, useState, type FC } from 'react';
+import { useCallback, useEffect, useState, type FC } from 'react';
 import { Box } from '../common/Box';
 import { messages } from '../../messages/messages';
 import logo from '../../assets/logo.svg';
@@ -13,12 +13,20 @@ export const GameHeader: FC = () => {
   const [timer, setTimer] = useTimer({ countdown: 60 });
   const matches = useSelector((state: RootState) => state.game.matches);
   const mistakes = useSelector((state: RootState) => state.game.mistakes);
+  const { timer: storeTimer, timerVersion } = useSelector((state: RootState) => ({
+    timer: state.game.timer,
+    timerVersion: state.game.timerVersion,
+  }));
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSettingsClick = useCallback(() => {
     setIsModalOpen((prev) => !prev);
   }, []);
+
+  useEffect(() => {
+    setTimer(storeTimer);
+  }, [storeTimer, setTimer, timerVersion]);
 
   return (
     <Box className="w-full h-full justify-between pb-8">

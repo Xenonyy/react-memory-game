@@ -1,13 +1,28 @@
-import type { FC } from 'react';
+import { useCallback, useRef, type FC } from 'react';
 import { messages } from '../../messages/messages';
 import { Box } from './Box';
 import { CloseSVG } from '../svgs/close';
+import { useDispatch, useSelector } from 'react-redux';
+import { setStoreTimer } from '../../store/gameSlice';
+import type { RootState } from '../../store/store';
 
 interface ModalProps {
   onClick?: () => void;
 }
 
 export const Modal: FC<ModalProps> = ({ onClick }) => {
+  const dispatch = useDispatch();
+  const timer = useSelector((state: RootState) => state.game.timer);
+
+  const countdownRef = useRef<HTMLInputElement>(null);
+  const pairsRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = useCallback(() => {
+    const countdownValue = Number(countdownRef.current?.value) || 60;
+    dispatch(setStoreTimer(countdownValue));
+    onClick?.();
+  }, [dispatch, onClick]);
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/70">
       <div className="bg-white rounded-3xl shadow-lg">
@@ -20,6 +35,7 @@ export const Modal: FC<ModalProps> = ({ onClick }) => {
             <p className="font-medium text-lg">{messages.modal.settings.pairs}</p>
             <input
               role="textbox"
+              ref={pairsRef}
               tabIndex={0}
               defaultValue={12}
               className="px-4 py-2 border-2 border-border max-w-13 rounded-lg"
@@ -30,15 +46,16 @@ export const Modal: FC<ModalProps> = ({ onClick }) => {
             <input
               role="textbox"
               tabIndex={0}
-              defaultValue={60}
-              className="px-4 py-2 border-2 border-border max-w-13 rounded-lg"
+              ref={countdownRef}
+              defaultValue={timer}
+              className="px-4 py-2 border-2 border-border max-w-fit rounded-lg"
             />
           </Box>
         </Box>
         <button
-          onClick={onClick}
+          onClick={handleClick}
           tabIndex={0}
-          className="bg-secondary-text text-white w-[90%] py-4 rounded-3xl uppercase  hover:bg-secondary-text mb-4"
+          className="bg-secondary-text text-white w-[90%] py-4 rounded-3xl uppercase hover:bg-secondary-text mb-4"
         >
           {messages.modal.settings.save}
         </button>
