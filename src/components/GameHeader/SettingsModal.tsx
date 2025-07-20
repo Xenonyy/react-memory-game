@@ -31,35 +31,35 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
 
   return (
     <Modal type="settings" onClick={onClick}>
-      <Box className="px-7 flex-col font-sans font-thin">
+      <Box className="flex-col font-gilroy font-thin">
         <Box className="flex-row justify-between text-center w-full mb-4 mr-4">
-          <p className="font-medium text-lg">{messages.modal.settings.pairs}</p>
+          <p className="font-sans font-medium text-lg">{messages.modal.settings.pairs}</p>
           <input
             role="textbox"
             ref={pairsRef}
             tabIndex={0}
             defaultValue={12}
-            className="px-4 py-2 border-2 border-border max-w-13 rounded-lg"
+            className="text-center py-2 border-2 border-border max-w-13 rounded-lg"
           />
         </Box>
         <Box className="flex-row justify-between text-center w-full mb-4 mr-4">
-          <p className="font-medium text-lg">{messages.modal.settings.countdown}</p>
+          <p className="font-sans font-medium text-lg">{messages.modal.settings.countdown}</p>
           <input
             role="textbox"
             tabIndex={0}
             ref={countdownRef}
             defaultValue={timer}
-            className="px-4 py-2 border-2 border-border max-w-13 rounded-lg"
+            className="text-center py-2 border-2 border-border max-w-13 rounded-lg"
           />
         </Box>
         <Box className="flex-row justify-between text-center w-full mb-4 mr-4">
-          <p className="font-medium text-lg">{messages.modal.settings.username}</p>
+          <p className="font-sans font-medium text-lg">{messages.modal.settings.username}</p>
           <input
             role="textbox"
             tabIndex={0}
             ref={usernameRef}
             defaultValue={username}
-            className="px-4 py-2 border-2 border-border max-w-30 rounded-lg"
+            className="text-center py-2 border-2 border-border max-w-30 rounded-lg"
           />
         </Box>
       </Box>
