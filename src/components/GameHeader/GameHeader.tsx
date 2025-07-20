@@ -11,13 +11,18 @@ import { SettingsModal } from './SettingsModal';
 import { resetGame, setStoreTimer } from '../../store/gameSlice';
 
 export const GameHeader: FC = () => {
-  const [timer, setTimer] = useTimer({ countdown: 60 });
-  const matches = useSelector((state: RootState) => state.game.matches);
-  const mistakes = useSelector((state: RootState) => state.game.mistakes);
-  const { timer: storeTimer, timerVersion } = useSelector((state: RootState) => ({
+  const {
+    matches,
+    mistakes,
+    timer: storeTimer,
+    timerVersion,
+  } = useSelector((state: RootState) => ({
+    matches: state.game.matches,
+    mistakes: state.game.mistakes,
     timer: state.game.timer,
     timerVersion: state.game.timerVersion,
   }));
+  const [timer, setTimer] = useTimer({});
   const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,7 +33,6 @@ export const GameHeader: FC = () => {
 
   const handleResetClick = useCallback(() => {
     dispatch(resetGame());
-    dispatch(setStoreTimer(storeTimer));
     // todo: reshuffle
   }, []);
 
