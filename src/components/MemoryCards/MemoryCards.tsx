@@ -42,7 +42,7 @@ export const MemoryCards: FC = () => {
   );
 
   const cards = useMemo(() => {
-    const selected = allSymbols.slice(0, pairAmount);
+    const selected = allSymbols.sort(() => Math.random() - 0.5).slice(0, pairAmount);
     const cards = selected.flatMap((symbol) => [
       { id: `${symbol}-1`, symbol },
       { id: `${symbol}-2`, symbol },
