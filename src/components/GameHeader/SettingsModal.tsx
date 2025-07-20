@@ -51,6 +51,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
             role="textbox"
             ref={pairsRef}
             tabIndex={0}
+            aria-label={translations.pairs}
             defaultValue={pairAmount}
             className="text-center py-2 border-2 border-border max-w-13 rounded-lg"
           />
@@ -61,6 +62,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
             role="textbox"
             tabIndex={0}
             ref={difficultyRef}
+            aria-label={translations.difficulty}
             defaultValue={difficulty}
             className="text-center py-2 border-2 border-border max-w-13 rounded-lg"
           />
@@ -71,6 +73,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
             role="textbox"
             tabIndex={0}
             ref={countdownRef}
+            aria-label={translations.countdown}
             defaultValue={timerSetting}
             className="text-center py-2 border-2 border-border max-w-13 rounded-lg"
           />
@@ -81,6 +84,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
             role="textbox"
             tabIndex={0}
             ref={usernameRef}
+            aria-label={translations.username}
             defaultValue={username}
             className="text-center py-2 border-2 border-border max-w-30 rounded-lg"
           />
@@ -89,6 +93,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
       <button
         onClick={handleClick}
         tabIndex={0}
+        aria-label={translations.save}
         className="mb-4 py-4 rounded-3xl uppercase cursor-pointer bg-secondary-text text-white w-[90%] hover:bg-secondary-text/80 transition-all duration-300"
       >
         {translations.save}

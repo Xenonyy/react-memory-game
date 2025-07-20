@@ -45,6 +45,7 @@ export const ResultsModal: FC = () => {
         <button
           onClick={handleClick}
           tabIndex={0}
+          aria-label={messages.game.retry}
           className={clsx(
             'm-4 py-4 rounded-3xl uppercase cursor-pointer text-white w-[90%] transition-all duration-300',
             {

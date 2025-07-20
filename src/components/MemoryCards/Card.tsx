@@ -20,6 +20,7 @@ export const Card: FC<CardProps> = ({ id, symbol, isFlipped, onClick }) => {
   return (
     <Box
       id={id}
+      aria-label={id}
       className="relative w-24 h-36 rounded-lg cursor-pointer hover:shadow-lg justify-center [perspective:1000px]"
       onClick={() => onClick(id)}
       role="button"
