@@ -1,7 +1,14 @@
 import { useCallback, useRef, type FC } from 'react';
 import { messages } from '../../messages/messages';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDifficulty, setPairAmount, setStoreTimer, setTimersetting, setUsername } from '../../store/gameSlice';
+import {
+  resetGame,
+  setDifficulty,
+  setPairAmount,
+  setStoreTimer,
+  setTimersetting,
+  setUsername,
+} from '../../store/gameSlice';
 import type { RootState } from '../../store/store';
 import { Box } from '../common/Box';
 import { Modal } from '../common/Modal';
@@ -31,6 +38,7 @@ export const SettingsModal: FC<SettingsModalProps> = ({ onClick }) => {
     const usernameValue = String(usernameRef.current?.value) || username;
     const difficultyValue = Number(difficultyRef.current?.value) || difficulty;
 
+    dispatch(resetGame());
     dispatch(setStoreTimer(countdownValue));
     dispatch(setTimersetting(countdownValue));
     dispatch(setUsername(usernameValue));
