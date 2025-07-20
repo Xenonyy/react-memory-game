@@ -4,7 +4,7 @@ export const messages = {
     matches: 'matches',
     mistakes: 'mistakes',
     settings: 'Settings',
-    reset: 'Reset',
+    reset: 'Reset Game',
   },
   modal: {
     settings: {

@@ -4,10 +4,11 @@ import { messages } from '../../messages/messages';
 import logo from '../../assets/logo.svg';
 import settings from '../../assets/game/settings.svg';
 import reset from '../../assets/game/reset.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import { useTimer } from '../../hooks/useTimer';
 import { Modal } from '../common/Modal';
+import { resetGame, setStoreTimer } from '../../store/gameSlice';
 
 export const GameHeader: FC = () => {
   const [timer, setTimer] = useTimer({ countdown: 60 });
@@ -17,11 +18,17 @@ export const GameHeader: FC = () => {
     timer: state.game.timer,
     timerVersion: state.game.timerVersion,
   }));
+  const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSettingsClick = useCallback(() => {
     setIsModalOpen((prev) => !prev);
+  }, []);
+
+  const handleResetClick = useCallback(() => {
+    dispatch(resetGame());
+    dispatch(setStoreTimer(storeTimer));
   }, []);
 
   useEffect(() => {
@@ -51,7 +58,12 @@ export const GameHeader: FC = () => {
         />
         {isModalOpen && <Modal onClick={handleSettingsClick} />}
         <p className="border-r-2 border-border w-0 h-10 mx-4" />
-        <img src={reset} alt={messages.game.reset} className="w-6 h-6" />
+        <img
+          src={reset}
+          alt={messages.game.reset}
+          className="w-6 h-6 hover:mix-blend-difference cursor-pointer transition-all duration-300"
+          onClick={handleResetClick}
+        />
       </Box>
     </Box>
   );
