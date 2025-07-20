@@ -15,14 +15,13 @@ export const GameHeader: FC = () => {
     matches,
     mistakes,
     timer: storeTimer,
-    timerVersion,
   } = useSelector((state: RootState) => ({
     matches: state.game.matches,
     mistakes: state.game.mistakes,
     timer: state.game.timer,
     timerVersion: state.game.timerVersion,
   }));
-  const [timer, setTimer] = useTimer({});
+  const [timer, setTimer] = useTimer({ countdown: storeTimer });
   const dispatch = useDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +37,7 @@ export const GameHeader: FC = () => {
 
   useEffect(() => {
     setTimer(storeTimer);
-  }, [storeTimer, setTimer, timerVersion]);
+  }, [storeTimer, setTimer]);
 
   useEffect(() => {
     dispatch(setStoreTimer(timer > 0 ? timer : 0));
