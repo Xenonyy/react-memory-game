@@ -10,9 +10,9 @@ export const messages = {
   modal: {
     settings: {
       title: 'Game Settings',
-      pairs: 'Number of pair of cards',
+      pairs: 'Number of pairs of cards',
       countdown: 'Countdown time (sec.)',
-      username: 'Enter username',
+      username: 'Your Username',
       save: 'Save Settings',
     },
     victory: {
@@ -24,7 +24,7 @@ export const messages = {
       description: 'You have made too many mistakes! 😵',
     },
     timeup: {
-      title: 'Time up',
+      title: "Time's up",
       description: 'You have run out of time! 😴',
     },
   },
