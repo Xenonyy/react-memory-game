@@ -54,7 +54,7 @@ export const GameHeader: FC = () => {
         <img
           src={settings}
           alt={messages.game.settings}
-          className="w-6 h-6 hover:mix-blend-difference cursor-pointer transition-all duration-300"
+          className="w-6 h-6 filter brightness-100 hover:brightness-50  cursor-pointer transition-all duration-300"
           onClick={handleSettingsClick}
         />
         {isModalOpen && <Modal onClick={handleSettingsClick} />}
@@ -62,7 +62,7 @@ export const GameHeader: FC = () => {
         <img
           src={reset}
           alt={messages.game.reset}
-          className="w-6 h-6 hover:mix-blend-difference cursor-pointer transition-all duration-300"
+          className="w-6 h-6 filter brightness-100 hover:brightness-50  cursor-pointer transition-all duration-300"
           onClick={handleResetClick}
         />
       </Box>
