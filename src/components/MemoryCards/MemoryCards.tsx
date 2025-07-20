@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, type FC } from 'react';
+import { motion } from 'framer-motion';
 import { Box } from '../common/Box';
 import { Card } from './Card';
 import { useDispatch, useSelector } from 'react-redux';
@@ -94,14 +95,20 @@ export const MemoryCards: FC = () => {
   return (
     <Box className="w-full h-full bg-primary-bg md:rounded-3xl md:px-16 md:py-20 justify-center select-none">
       <Box className="grid grid-cols-8 gap-5 2xl:grid-cols-12">
-        {cards.map(({ id, symbol }) => (
-          <Card
+        {cards.map(({ id, symbol }, index) => (
+          <motion.div
             key={id}
-            id={id}
-            symbol={symbol}
-            isFlipped={flippedIds.includes(id) || matchedIds.includes(id)}
-            onClick={handleCardClick}
-          />
+            initial={{ x: -40, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ ease: 'easeIn', duration: 0.5, delay: index * 0.04 }}
+          >
+            <Card
+              id={id}
+              symbol={symbol}
+              isFlipped={flippedIds.includes(id) || matchedIds.includes(id)}
+              onClick={handleCardClick}
+            />
+          </motion.div>
         ))}
       </Box>
     </Box>
