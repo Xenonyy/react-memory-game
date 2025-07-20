@@ -5,6 +5,7 @@ interface GameState {
   mistakes: number;
   timer: number;
   timerVersion: number;
+  username: string;
 }
 
 const initialState: GameState = {
@@ -12,6 +13,7 @@ const initialState: GameState = {
   mistakes: 0,
   timer: 60,
   timerVersion: 0,
+  username: 'Player',
 };
 
 export const gameSlice = createSlice({
@@ -35,8 +37,15 @@ export const gameSlice = createSlice({
       state.timer = action.payload;
       state.timerVersion += 1;
     },
+    username: (state) => {
+      state.username = 'Player';
+    },
+    setUsername: (state, action: PayloadAction<string>) => {
+      state.username = action.payload;
+    },
   },
 });
 
-export const { incrementMatches, incrementMistakes, resetGame, timer, setStoreTimer } = gameSlice.actions;
+export const { incrementMatches, incrementMistakes, resetGame, timer, setStoreTimer, username, setUsername } =
+  gameSlice.actions;
 export default gameSlice.reducer;

@@ -3,7 +3,7 @@ import { messages } from '../../messages/messages';
 import { Box } from './Box';
 import { CloseSVG } from '../svgs/close';
 import { useDispatch, useSelector } from 'react-redux';
-import { setStoreTimer } from '../../store/gameSlice';
+import { setStoreTimer, setUsername } from '../../store/gameSlice';
 import type { RootState } from '../../store/store';
 
 interface ModalProps {
@@ -12,14 +12,20 @@ interface ModalProps {
 
 export const Modal: FC<ModalProps> = ({ onClick }) => {
   const dispatch = useDispatch();
-  const timer = useSelector((state: RootState) => state.game.timer);
+  const { timer, username } = useSelector((state: RootState) => ({
+    timer: state.game.timer,
+    username: state.game.username,
+  }));
 
   const countdownRef = useRef<HTMLInputElement>(null);
   const pairsRef = useRef<HTMLInputElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
 
   const handleClick = useCallback(() => {
     const countdownValue = Number(countdownRef.current?.value) || 60;
+    const usernameValue = String(usernameRef.current?.value) || 'Player';
     dispatch(setStoreTimer(countdownValue));
+    dispatch(setUsername(usernameValue));
     onClick?.();
   }, [dispatch, onClick]);
 
@@ -49,6 +55,16 @@ export const Modal: FC<ModalProps> = ({ onClick }) => {
               ref={countdownRef}
               defaultValue={timer}
               className="px-4 py-2 border-2 border-border max-w-13 rounded-lg"
+            />
+          </Box>
+          <Box className="flex-row justify-between text-center w-full mb-4 mr-4">
+            <p className="font-medium text-lg">{messages.modal.settings.username}</p>
+            <input
+              role="textbox"
+              tabIndex={0}
+              ref={usernameRef}
+              defaultValue={username}
+              className="px-4 py-2 border-2 border-border max-w-30 rounded-lg"
             />
           </Box>
         </Box>

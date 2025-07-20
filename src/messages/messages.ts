@@ -11,6 +11,7 @@ export const messages = {
       title: 'Game Settings',
       pairs: 'Number of pair of cards',
       countdown: 'Countdown time (sec.)',
+      username: 'Enter username',
       save: 'Save Settings',
     },
   },

@@ -29,6 +29,7 @@ export const GameHeader: FC = () => {
   const handleResetClick = useCallback(() => {
     dispatch(resetGame());
     dispatch(setStoreTimer(storeTimer));
+    // todo: reshuffle
   }, []);
 
   useEffect(() => {
