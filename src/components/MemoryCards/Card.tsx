@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Box } from '../common/Box';
-import { CardSVG } from '../common/cardSVG';
+import { CardSVG } from '../svgs/card';
 
 interface CardProps {
   id: string;
