@@ -7,7 +7,7 @@ import type { RootState } from '../../store/store';
 
 export const MemoryCards: FC = () => {
   const dispatch = useDispatch();
-
+  const timer = useSelector((state: RootState) => state.game.timer);
   const pairAmount = useSelector((state: RootState) => state.game.pairAmount);
 
   const allSymbols = useMemo(
@@ -57,7 +57,7 @@ export const MemoryCards: FC = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   const handleCardClick = (id: string) => {
-    if (isDisabled || flippedIds.includes(id) || matchedIds.includes(id)) {
+    if (isDisabled || flippedIds.includes(id) || matchedIds.includes(id) || timer === 0) {
       return;
     }
 
