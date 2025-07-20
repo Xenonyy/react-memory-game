@@ -13,6 +13,7 @@ export const messages = {
       pairs: 'Number of pairs of cards',
       countdown: 'Countdown time (sec.)',
       username: 'Your Username',
+      difficulty: 'Number of tries',
       save: 'Save Settings',
     },
     victory: {

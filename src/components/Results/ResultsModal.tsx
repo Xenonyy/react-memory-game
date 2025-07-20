@@ -4,16 +4,17 @@ import { Box } from '../common/Box';
 import { Modal } from '../common/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
-import type { ModalTypes } from '../../types/modalTypes';
+import type { ResultTypes } from '../../types/modalTypes';
 import { resetGame } from '../../store/gameSlice';
 import clsx from 'clsx';
 
 export const ResultsModal: FC = () => {
-  const { mistakes, matches, timer, pairAmount } = useSelector((state: RootState) => ({
+  const { mistakes, matches, timer, pairAmount, difficulty } = useSelector((state: RootState) => ({
     mistakes: state.game.mistakes,
     matches: state.game.matches,
     timer: state.game.timer,
     pairAmount: state.game.pairAmount,
+    difficulty: state.game.difficulty,
   }));
   const dispatch = useDispatch();
 
@@ -27,8 +28,8 @@ export const ResultsModal: FC = () => {
     dispatch(resetGame());
   }, []);
 
-  const result: ModalTypes | '' =
-    mistakes >= pairAmount / 2 + 1 ? 'defeat' : matches >= pairAmount ? 'victory' : timer <= 0 ? 'timeup' : '';
+  const result: ResultTypes =
+    mistakes >= difficulty ? 'defeat' : matches >= pairAmount ? 'victory' : timer <= 0 ? 'timeup' : '';
 
   useEffect(() => {
     result !== '' && setIsModalOpen(true);

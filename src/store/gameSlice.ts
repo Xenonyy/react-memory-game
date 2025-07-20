@@ -10,6 +10,7 @@ interface GameState {
   gameResult: string;
   gameResetVersion: number;
   pairAmount: number;
+  difficulty: number;
 }
 
 const initialState: GameState = {
@@ -22,6 +23,7 @@ const initialState: GameState = {
   gameResult: 'initial',
   gameResetVersion: 0,
   pairAmount: 12,
+  difficulty: 6,
 };
 
 export const gameSlice = createSlice({
@@ -39,6 +41,7 @@ export const gameSlice = createSlice({
       state.mistakes = 0;
       state.timer = state.timerSetting;
       state.pairAmount = state.pairAmount;
+      state.difficulty = state.difficulty;
       state.timerVersion = 0;
       state.gameResult = 'initial';
       state.gameResetVersion += 1;
@@ -75,6 +78,12 @@ export const gameSlice = createSlice({
     setPairAmount: (state, action: PayloadAction<number>) => {
       state.pairAmount = action.payload;
     },
+    difficulty: (state) => {
+      state.difficulty = 6;
+    },
+    setDifficulty: (state, action: PayloadAction<number>) => {
+      state.difficulty = action.payload;
+    },
   },
 });
 
@@ -91,5 +100,7 @@ export const {
   setGameResult,
   pairAmount,
   setPairAmount,
+  difficulty,
+  setDifficulty,
 } = gameSlice.actions;
 export default gameSlice.reducer;
