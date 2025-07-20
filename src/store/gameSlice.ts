@@ -38,6 +38,7 @@ export const gameSlice = createSlice({
       state.matches = 0;
       state.mistakes = 0;
       state.timer = state.timerSetting;
+      state.pairAmount = state.pairAmount;
       state.timerVersion = 0;
       state.gameResult = 'initial';
       state.gameResetVersion += 1;

@@ -1,22 +1,56 @@
 import { useState, useEffect, useMemo, type FC } from 'react';
 import { Box } from '../common/Box';
 import { Card } from './Card';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { incrementMatches, incrementMistakes } from '../../store/gameSlice';
+import type { RootState } from '../../store/store';
 
 export const MemoryCards: FC = () => {
   const dispatch = useDispatch();
-  const symbols = ['🦊', '🐶', '🐱', '🐹', '🐰', '🐵', '🐻', '🐼', '🐨', '🐯', '🦁', '🐷'];
+
+  const pairAmount = useSelector((state: RootState) => state.game.pairAmount);
+
+  const allSymbols = useMemo(
+    () => [
+      '🦊',
+      '🐶',
+      '🐱',
+      '🐹',
+      '🐰',
+      '🐵',
+      '🐻',
+      '🐼',
+      '🐨',
+      '🐯',
+      '🦁',
+      '🐷',
+      '🐸',
+      '🐙',
+      '🦋',
+      '🐠',
+      '🫎',
+      '🫏',
+      '🦆',
+      '🦬',
+      '🐃',
+      '🦈',
+      '🦑',
+      '🦌',
+      '🐐',
+    ],
+    []
+  );
 
   const cards = useMemo(() => {
-    const cards = symbols.flatMap((symbol) => [
+    const selected = allSymbols.slice(0, pairAmount);
+    const cards = selected.flatMap((symbol) => [
       { id: `${symbol}-1`, symbol },
       { id: `${symbol}-2`, symbol },
     ]);
 
     const shuffledCards = cards.sort(() => Math.random() - 0.5);
     return shuffledCards;
-  }, []);
+  }, [allSymbols, pairAmount]);
 
   const [flippedIds, setFlippedIds] = useState<string[]>([]);
   const [matchedIds, setMatchedIds] = useState<string[]>([]);
@@ -54,12 +88,8 @@ export const MemoryCards: FC = () => {
   };
 
   useEffect(() => {
-    console.table({
-      flippedIds,
-      matchedIds,
-      isDisabled,
-    });
-  }, [flippedIds, matchedIds, isDisabled]);
+    console.table({ flippedIds, matchedIds, isDisabled, pairAmount });
+  }, [flippedIds, matchedIds, isDisabled, pairAmount]);
 
   return (
     <Box className="w-full h-full bg-primary-bg md:rounded-3xl md:px-16 md:py-20 justify-center select-none">
