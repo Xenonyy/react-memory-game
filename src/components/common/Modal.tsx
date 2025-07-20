@@ -48,14 +48,14 @@ export const Modal: FC<ModalProps> = ({ onClick }) => {
               tabIndex={0}
               ref={countdownRef}
               defaultValue={timer}
-              className="px-4 py-2 border-2 border-border max-w-fit rounded-lg"
+              className="px-4 py-2 border-2 border-border max-w-13 rounded-lg"
             />
           </Box>
         </Box>
         <button
           onClick={handleClick}
           tabIndex={0}
-          className="bg-secondary-text text-white w-[90%] py-4 rounded-3xl uppercase hover:bg-secondary-text mb-4"
+          className="mb-4 py-4 rounded-3xl uppercase cursor-pointer bg-secondary-text text-white w-[90%] hover:bg-secondary-text/80 transition-all duration-300"
         >
           {messages.modal.settings.save}
         </button>
